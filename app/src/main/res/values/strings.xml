@@ -11,4 +11,11 @@
     <string name="emailus">Facing issues with Login or Signup ? Email us at strong.explorers@gmail.com</string>
 
 
+<!--    signup here-->
+    <string name="signup_userid">User ID</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_button">Login</string>
+    
+
+
 </resources>
