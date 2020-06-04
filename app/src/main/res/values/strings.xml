@@ -29,8 +29,9 @@
     
     
     
-<!--    Employee Manager Schedule-->
+<!--   Manager Schedule screen-->
     <string name="add">Add</string>
+    <string name="schedule_submit">Submit</string>
     <string-array name="shift_timings_array">
         <item>7am-2pm</item>
         <item>2pm-10pm</item>

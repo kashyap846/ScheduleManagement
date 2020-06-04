@@ -46,13 +46,31 @@
 
     <TableRow>
 
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:layout_weight="1">
     <include
         layout="@layout/activity_manager_schedule_template"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/manager_schedule_date"
+
          />
+        </ScrollView>
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/submit_schedule"
+            android:layout_width="351dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/schedule_submit"
+            android:textStyle="bold"
+            />
     </TableRow>
 
 
