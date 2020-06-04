@@ -26,6 +26,24 @@
     <string name="welcome_message_employee">Welcome Employee</string>
     <string name="view_details">View Details</string>
     <string name="change_schedule">Change/View Schedule</string>
+    
+    
+    
+<!--    Employee Manager Schedule-->
+    <string name="add">Add</string>
+    <string-array name="shift_timings_array">
+        <item>7am-2pm</item>
+        <item>2pm-10pm</item>
+        <item>7am-11am</item>
+        <item>2pm-7pm</item>
+    </string-array>
+
+    <string-array name="employee_list_array">
+        <item>kashyap</item>
+        <item>Nirmohi</item>
+        <item>Rakhimol</item>
+        <item>Ajit</item>
+    </string-array>
 
 
 </resources>
