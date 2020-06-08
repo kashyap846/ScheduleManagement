@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +23,8 @@ import java.net.URL;
 public class SignupActivity extends AppCompatActivity {
     EditText firstname, lastname, password, email, number;
     Button submit;
-    private static final String REGISTER_URL = "https://8243a65272d2.ngrok.io/schedule_signup.php";
+    private static final String REGISTER_URL = "https://bfca0620b643.ngrok.io/schedule_signup.php";
+    RadioGroup managerGroup;
 
 
     @Override
@@ -34,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         email = findViewById(R.id.signup_email_ID_value);
         number = findViewById(R.id.signup_contact_Number_value);
         submit = findViewById(R.id.signup_submit);
+        managerGroup = findViewById(R.id.managerGroup);
         submit.setOnClickListener(this::registerUser);
 
         //setContentView(R.layout.activity_manager_home);
@@ -45,12 +49,20 @@ public class SignupActivity extends AppCompatActivity {
         String paswd = password.getText().toString();
         String emailID = email.getText().toString().trim().toLowerCase();
         String num = number.getText().toString();
-        register(fname, lname, paswd, emailID, num);
+        int selectedId = managerGroup.getCheckedRadioButtonId();
+        int m = -1;
+        if(selectedId!=-1){
+            RadioButton radioButton = (RadioButton) findViewById(selectedId);
+            String manager = radioButton.getText().toString();
+            m = (manager.trim().toLowerCase().equals("yes"))?1:0;
+        }
+
+        register(fname, lname, paswd, emailID, num, m);
     }
 
-    private void register(String fname, String lname, String paswd, String emailID, String num) {
+    private void register(String fname, String lname, String paswd, String emailID, String num, int manager) {
         Log.e("register: ", ""+fname+" "+lname+" "+paswd+" "+emailID+" "+num);
-        String urlSuffix = "?firstname="+fname+"&lastname="+lname+"&password="+paswd+"&email="+emailID+"&number="+num;
+        String urlSuffix = "?firstname="+fname+"&lastname="+lname+"&password="+paswd+"&email="+emailID+"&number="+num+"&manager="+manager;
         Log.e("register: ",""+urlSuffix );
         class RegisterUser extends AsyncTask<String,Void,String>{
             ProgressDialog loading;

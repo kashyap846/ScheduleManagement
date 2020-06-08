@@ -26,11 +26,14 @@
         android:layout_width="351dp"
         android:layout_height="47dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginBottom="252dp"
         android:text="@string/view_details"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logintitle"
         tools:layout_editor_absoluteY="281dp"
         tools:ignore="MissingConstraints" />
 
@@ -39,10 +42,13 @@
         android:layout_width="351dp"
         android:layout_height="47dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="113dp"
+        android:layout_marginBottom="252dp"
         android:text="@string/change_schedule"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginbutton"
         tools:layout_editor_absoluteY="485dp"
         tools:ignore="MissingConstraints" />
 

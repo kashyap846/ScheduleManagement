@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,22 +19,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.strongexplorers.schedulemanagement.R;
+import com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.model.SignupDetails;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String LOGIN_URL= "";
+    public static final String LOGIN_URL= "https://bfca0620b643.ngrok.io/schedule_login.php";
     public static final String KEY_EMAIL= "email" ;
     public static final String KEY_PASSWORD = "password" ;
     public static final String LOGIN_SUCCESS = "success" ;
+    public static final String MANAGER_FLAG = "isManager" ;
+    public static final String EMP_ID = "empid" ;
     public static final String SHARED_PREF_NAME = "tech" ;
     public static final String EMAIL_SHARED_PREF = "email" ;
     public static final String LOGGEDIN_SHARED_PREF = "loggedin" ;
     private EditText editTextEmail, editTextPassword;
     private Button btnLogin, signup;
-    private boolean loggedIn = false;
+    private boolean isManager = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +65,22 @@ public class LoginActivity extends AppCompatActivity {
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL, new Response.Listener<String>() {
+        Gson gson = new Gson();
             @Override
             public void onResponse(String response) {
-                if (response.trim().equalsIgnoreCase(LOGIN_SUCCESS)) {
+                Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                if (!response.trim().equalsIgnoreCase("user not present please signup")) {
+
+                    SignupDetails signupDetails = gson.fromJson(response.trim(), SignupDetails.class);
+                    Log.e("SignupDetails: ",""+signupDetails.getEmail() );
                     SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
-                    editor.putBoolean(EMAIL_SHARED_PREF, true);
+                    editor.putBoolean(MANAGER_FLAG, (signupDetails.getManager().equalsIgnoreCase("1"))?true:false);
+                    editor.putString(EMP_ID,(signupDetails.getId()));
                     editor.commit();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    getActivities();
+//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid password or email", Toast.LENGTH_SHORT).show();
                 }
@@ -93,15 +104,24 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    private void getActivities() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        isManager = sharedPreferences.getBoolean(MANAGER_FLAG,false);
+        if(isManager){
+            Intent intent =  new Intent(LoginActivity.this, ManagerHomeActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent =  new Intent(LoginActivity.this, EmployeeHomeActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF,false);
-        if (loggedIn){
-            Intent intent =  new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
+        //getActivities();
+
     }
 
 }
