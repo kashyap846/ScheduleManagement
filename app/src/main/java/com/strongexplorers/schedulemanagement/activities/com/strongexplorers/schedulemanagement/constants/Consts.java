@@ -1,7 +1,7 @@
 package com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.constants;
 
 public class Consts {
-    public static final String BASE_URL = "https://fbac4b02205f.ngrok.io";
+    public static final String BASE_URL = "https://46b99cd49afc.ngrok.io";
 
     //Login
     public static final String LOGIN_URL=  "/schedule_login.php";

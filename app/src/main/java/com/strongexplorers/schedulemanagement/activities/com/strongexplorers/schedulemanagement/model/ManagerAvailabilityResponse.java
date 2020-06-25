@@ -20,6 +20,12 @@ public class ManagerAvailabilityResponse implements Serializable {
     String lastName;
     @SerializedName("email")
     String email;
+    @SerializedName("contactNumber")
+    String contactNumber;
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
 
     public String getEmail() {
         return email;

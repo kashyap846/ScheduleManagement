@@ -82,10 +82,13 @@ public class ManagerViewEmployeesAdapter extends RecyclerView.Adapter<ManagerVie
                 @Override
                 public void onResponse(Call<ArrayList<ManagerAvailabilityResponse>> call, Response<ArrayList<ManagerAvailabilityResponse>> response) {
                     if(response.body().size()>0){
-                    message = "Name::\t" + response.body().get(0).getFirstName() + " " + response.body().get(0).getLastName() + "\n"
-                            + "Email::\t" + response.body().get(0).getEmail() +
-                            "\n __________________________________________\n" +
-                            ""+"Weekname"+""+"\t"+ ""+"Start_Time"+""+"\t"+""+"End_time"+""+"\n";
+                    message = "Name::\t" + response.body().get(0).getFirstName() + " " + response.body().get(0).getLastName() + "\n\n"
+                            + "Email::\t" + response.body().get(0).getEmail()+"\n\n"
+                            + "PhoneNo::\t" + response.body().get(0).getContactNumber()+"\n\n"
+                            + "Emp_id::\t"+response.body().get(0).getEmp_id()+
+
+                            "\n\n __________________________________________\n" +
+                            ""+"Weekname"+""+"\t"+ ""+"Start_Time"+""+"\t"+""+"End_time"+""+"\n\n";
 
                     for (ManagerAvailabilityResponse manager : response.body()) {
                         message += manager.getWeek() + "\t\t\t" + manager.getShiftStart() + "\t\t\t" + manager.getShiftEnd() + "\n\n";
@@ -95,11 +98,14 @@ public class ManagerViewEmployeesAdapter extends RecyclerView.Adapter<ManagerVie
 
 
                 }else{
-                        message = "Name::\t" + signupDetails.getFirstName() + " " + signupDetails.getLastName() + "\n"
-                                + "Email::\t" + signupDetails.getEmail();
+                        message = "Name::\t" + signupDetails.getFirstName() + " " + signupDetails.getLastName() + "\n\n"
+                                + "Email::\t" + signupDetails.getEmail()+"\n\n"
+                                + "PhoneNo::\t" + signupDetails.getContactNumber()+"\n\n"
+                                + "Emp_id::\t"+signupDetails.getId();
                     }
 
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    alertDialogBuilder.setTitle("Employee Details").setIcon(R.drawable.ic_launcher_background);
                     alertDialogBuilder.setMessage(message);
 
 
