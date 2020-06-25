@@ -2,9 +2,10 @@ package com.strongexplorers.schedulemanagement.activities.com.strongexplorers.sc
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class SignupDetails {
+public class SignupDetails implements Serializable {
     @SerializedName("id")
     private String id;
     @SerializedName("firstname")

@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.strongexplorers.schedulemanagement.R;
+import com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.constants.Consts;
+import com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.utils.HelperUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,8 +24,7 @@ import java.net.URL;
 
 public class SignupActivity extends AppCompatActivity {
     EditText firstname, lastname, password, email, number;
-    Button submit;
-    private static final String REGISTER_URL = "https://bfca0620b643.ngrok.io/schedule_signup.php";
+    Button submit,login;
     RadioGroup managerGroup;
 
 
@@ -39,6 +40,13 @@ public class SignupActivity extends AppCompatActivity {
         submit = findViewById(R.id.signup_submit);
         managerGroup = findViewById(R.id.managerGroup);
         submit.setOnClickListener(this::registerUser);
+        login = findViewById(R.id.signup_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         //setContentView(R.layout.activity_manager_home);
     }
@@ -64,49 +72,6 @@ public class SignupActivity extends AppCompatActivity {
         Log.e("register: ", ""+fname+" "+lname+" "+paswd+" "+emailID+" "+num);
         String urlSuffix = "?firstname="+fname+"&lastname="+lname+"&password="+paswd+"&email="+emailID+"&number="+num+"&manager="+manager;
         Log.e("register: ",""+urlSuffix );
-        class RegisterUser extends AsyncTask<String,Void,String>{
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(SignupActivity.this, "Please wait", null,true, true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
-                loading.cancel();
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-                String s = params[0];
-                BufferedReader bufferedReader = null;
-                try{
-                    URL url = new URL(REGISTER_URL+urlSuffix);
-                    HttpURLConnection con = (HttpURLConnection)url.openConnection();
-                    int responseCode = con.getResponseCode();
-                    Log.e( "doInBackground: ","response"+responseCode );
-                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                    String result;
-                    result = bufferedReader.readLine();
-                    Log.e("result: ", ""+result);
-                    return result;
-
-
-                }catch (Exception e){
-                    Log.e("excepton: ", e.getMessage());
-                    return null;
-                }
-
-            }
-        }
-        RegisterUser ur = new RegisterUser();
-        Log.e( "register: ", "before execute" );
-        ur.execute(urlSuffix);
-
-
+        HelperUtils.getURLConnection(Consts.BASE_URL+Consts.SIGNUP_REGISTER_URL, urlSuffix,SignupActivity.this);
     }
 }

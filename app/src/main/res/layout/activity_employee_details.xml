@@ -6,21 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D069700B"
-    android:backgroundTint="#C6AC0B0B">
+    android:backgroundTint="#C60BACA7">
 
-        <TextView
-            android:id="@+id/signup_title"
-            android:layout_width="317dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="36dp"
-            android:text="@string/signup_title"
-            android:textAlignment="center"
-            android:textColor="#0A0000"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/signup_title"
+        android:layout_width="317dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="36dp"
+        android:text="View Your Details"
+        android:textAlignment="center"
+        android:textColor="#0A0000"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -142,38 +142,38 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_contact_Number" />
 
     <!--        <TextView-->
-<!--            android:id="@+id/signup_confirm_Password"-->
-<!--            android:layout_width="203dp"-->
-<!--            android:layout_height="34dp"-->
-<!--            android:text="Confirm password"-->
-<!--            android:textColor="#0A0000"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/signup_create_Password_value" />-->
+    <!--            android:id="@+id/signup_confirm_Password"-->
+    <!--            android:layout_width="203dp"-->
+    <!--            android:layout_height="34dp"-->
+    <!--            android:text="Confirm password"-->
+    <!--            android:textColor="#0A0000"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/signup_create_Password_value" />-->
 
-<!--        <EditText-->
-<!--            android:id="@+id/signup_confirm_Password_value"-->
-<!--            android:layout_width="337dp"-->
-<!--            android:layout_height="31dp"-->
-<!--            android:background="@android:color/darker_gray"-->
-<!--            android:backgroundTint="#BFDADD"-->
-<!--            android:ems="10"-->
-<!--            android:foregroundTint="#00ACC1"-->
-<!--            android:hint="Confirm Password"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:textColor="@android:color/background_dark"-->
-<!--            android:textSize="18sp"-->
-<!--            android:textStyle="bold"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/signup_confirm_Password" />-->
+    <!--        <EditText-->
+    <!--            android:id="@+id/signup_confirm_Password_value"-->
+    <!--            android:layout_width="337dp"-->
+    <!--            android:layout_height="31dp"-->
+    <!--            android:background="@android:color/darker_gray"-->
+    <!--            android:backgroundTint="#BFDADD"-->
+    <!--            android:ems="10"-->
+    <!--            android:foregroundTint="#00ACC1"-->
+    <!--            android:hint="Confirm Password"-->
+    <!--            android:inputType="textPassword"-->
+    <!--            android:textColor="@android:color/background_dark"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/signup_confirm_Password" />-->
 
     <TextView
         android:id="@+id/signup_create_Password"
         android:layout_width="207dp"
         android:layout_height="30dp"
         android:layout_marginStart="44dp"
-        android:text="@string/signup_create_Password"
+        android:text="@string/signup_contact_Number"
         android:textColor="#0A0000"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -189,7 +189,7 @@
         android:backgroundTint="#BFDADD"
         android:ems="10"
         android:foregroundTint="#00ACC1"
-        android:hint="@string/signup_create_Password"
+        android:hint="@string/signup_contact_Number"
         android:inputType="textPassword"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
@@ -214,7 +214,7 @@
         android:layout_marginStart="44dp"
         android:orientation="horizontal"
         android:weightSum="5"
-        android:id="@+id/managerGroup"
+        android:id="@+id/employeeGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_manager"
         >
@@ -236,26 +236,16 @@
             android:textSize="15dp" />
     </RadioGroup>
 
-    <Button
-            android:id="@+id/signup_submit"
-            android:layout_width="115dp"
-            android:layout_height="55dp"
-            android:text="SUBMIT"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/managerGroup" />
-    <Button
-        android:id="@+id/signup_login"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:text="Go To Login Screen"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_submit" />
+<!--    <Button-->
+<!--        android:id="@+id/signup_submit"-->
+<!--        android:layout_width="115dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:text="SUBMIT"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.504"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/managerGroup" />-->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

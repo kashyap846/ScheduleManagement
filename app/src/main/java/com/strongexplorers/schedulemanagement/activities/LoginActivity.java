@@ -21,21 +21,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.strongexplorers.schedulemanagement.R;
+import com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.constants.Consts;
 import com.strongexplorers.schedulemanagement.activities.com.strongexplorers.schedulemanagement.model.SignupDetails;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String LOGIN_URL= "https://bfca0620b643.ngrok.io/schedule_login.php";
-    public static final String KEY_EMAIL= "email" ;
-    public static final String KEY_PASSWORD = "password" ;
-    public static final String LOGIN_SUCCESS = "success" ;
-    public static final String MANAGER_FLAG = "isManager" ;
-    public static final String EMP_ID = "empid" ;
-    public static final String SHARED_PREF_NAME = "tech" ;
-    public static final String EMAIL_SHARED_PREF = "email" ;
-    public static final String LOGGEDIN_SHARED_PREF = "loggedin" ;
+
     private EditText editTextEmail, editTextPassword;
     private Button btnLogin, signup;
     private boolean isManager = false;
@@ -64,21 +57,21 @@ public class LoginActivity extends AppCompatActivity {
     private void login(View view) {
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Consts.BASE_URL+Consts.LOGIN_URL, new Response.Listener<String>() {
         Gson gson = new Gson();
             @Override
             public void onResponse(String response) {
-                Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                 if (!response.trim().equalsIgnoreCase("user not present please signup")) {
 
                     SignupDetails signupDetails = gson.fromJson(response.trim(), SignupDetails.class);
                     Log.e("SignupDetails: ",""+signupDetails.getEmail() );
-                    SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Consts.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(MANAGER_FLAG, (signupDetails.getManager().equalsIgnoreCase("1"))?true:false);
-                    editor.putString(EMP_ID,(signupDetails.getId()));
+                    editor.putBoolean(Consts.MANAGER_FLAG, (signupDetails.getManager().equalsIgnoreCase("1"))?true:false);
+                    editor.putString(Consts.EMP_ID,(signupDetails.getId()));
                     editor.commit();
-                    getActivities();
+                    getActivities(signupDetails);
 //                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                    startActivity(intent);
                 } else {
@@ -94,8 +87,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected Map<String,String>getParams()throws AuthFailureError{
                 Map<String,String> params = new HashMap<>();
-                params.put(KEY_EMAIL,email);
-                params.put(KEY_PASSWORD,password);
+                params.put(Consts.KEY_EMAIL,email);
+                params.put(Consts.KEY_PASSWORD,password);
                 return params;
 
             }
@@ -104,14 +97,20 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void getActivities() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        isManager = sharedPreferences.getBoolean(MANAGER_FLAG,false);
+    private void getActivities(SignupDetails signupDetails) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Consts.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        isManager = sharedPreferences.getBoolean(Consts.MANAGER_FLAG,false);
         if(isManager){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("signupDetails", signupDetails);
             Intent intent =  new Intent(LoginActivity.this, ManagerHomeActivity.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         }else{
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("signupDetails", signupDetails);
             Intent intent =  new Intent(LoginActivity.this, EmployeeHomeActivity.class);
+            intent.putExtras(bundle);
             startActivity(intent);
         }
     }
@@ -119,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Consts.SHARED_PREF_NAME,Context.MODE_PRIVATE);
         //getActivities();
 
     }

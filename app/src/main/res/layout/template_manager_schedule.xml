@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
 
 
-            android:text="Employees Available"
+            android:text="Employees"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -38,22 +38,4 @@
 
     </TableRow>
 
-    <TableRow android:layout_width="wrap_content">
-<!--        <Spinner-->
-<!--            android:id="@+id/shift_timings1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:entries="@array/shift_timings_array"-->
-
-
-
-<!--            />-->
-<!--        <Spinner-->
-<!--            android:id="@+id/employee_list1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:entries="@array/employee_list_array"-->
-<!--            />-->
-
-    </TableRow>
 </TableLayout>

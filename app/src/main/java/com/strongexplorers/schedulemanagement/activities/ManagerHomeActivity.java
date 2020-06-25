@@ -12,11 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.strongexplorers.schedulemanagement.R;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.Date;
 
 public class ManagerHomeActivity extends AppCompatActivity {
-    Button prepareSchedule;
+    Button prepareSchedule, viewEmployees;
     long scheduleDate;
 
     @Override
@@ -25,6 +26,13 @@ public class ManagerHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manager_home);
         prepareSchedule = findViewById(R.id.manager_prepare_schedule);
         prepareSchedule.setOnClickListener(this::addDatePickDialog);
+        viewEmployees = findViewById(R.id.manager_view_employee);
+        viewEmployees.setOnClickListener(this::openEmployeeActivity);
+    }
+
+    private void openEmployeeActivity(View view) {
+        Intent intent =  new Intent(ManagerHomeActivity.this,ManagerViewEmployeesActivity.class);
+        startActivity(intent);
     }
 
     private void addDatePickDialog(View view) {
@@ -42,11 +50,21 @@ public class ManagerHomeActivity extends AppCompatActivity {
         calendar.clear();
         calendar.set(year,month,dayOfMonth);
         scheduleDate = calendar.getTimeInMillis();
+
+        // Get the weekday and print it
+        int weekday = calendar.get(Calendar.DAY_OF_WEEK);
+        Log.e("addDatePickDialog: ",""+weekday );
+
+        // Get weekday name
+        DateFormatSymbols dfs = new DateFormatSymbols();
+        Log.e("addDatePickDialog " ,""+ dfs.getWeekdays()[weekday]);
+
         //dateTextView.setText(DoctorUtils.getDateString(appointmentDate));
         Log.e("onAppointmentDateSet: ", ""+scheduleDate);
         Intent intent = new Intent(this, ManagerAddDateSchedule.class);
         Bundle extras = new Bundle();
         extras.putLong("scheduleDate",scheduleDate);
+        extras.putString("dayOfWeek",dfs.getWeekdays()[weekday]);
         intent.putExtras(extras);
        // intent.p
         startActivity(intent);

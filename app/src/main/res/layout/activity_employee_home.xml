@@ -7,7 +7,7 @@
     >
 
     <TextView
-        android:id="@+id/logintitle"
+        android:id="@+id/welcome_message_employee"
         android:layout_width="351dp"
         android:layout_height="47dp"
         android:background="@android:color/darker_gray"
@@ -19,10 +19,11 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+/>
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/view_details"
         android:layout_width="351dp"
         android:layout_height="47dp"
         android:layout_marginEnd="10dp"
@@ -33,23 +34,44 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logintitle"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_message_employee"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         tools:layout_editor_absoluteY="281dp"
-        tools:ignore="MissingConstraints" />
+         />
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/change_schedule"
+        android:layout_width="351dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="10dp"
+
+        android:layout_marginBottom="252dp"
+        android:text="Change/View Availability"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_details"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        tools:layout_editor_absoluteY="485dp"
+         />
+
+    <Button
+        android:id="@+id/view_schedule"
         android:layout_width="351dp"
         android:layout_height="47dp"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="113dp"
         android:layout_marginBottom="252dp"
-        android:text="@string/change_schedule"
+        android:text="View Schedule"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbutton"
+        app:layout_constraintTop_toBottomOf="@+id/change_schedule"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         tools:layout_editor_absoluteY="485dp"
-        tools:ignore="MissingConstraints" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

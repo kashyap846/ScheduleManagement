@@ -15,6 +15,12 @@
     <string name="signup_userid">User ID</string>
     <string name="signup_password">Password</string>
     <string name="signup_button">Login</string>
+    <string name="signup_title">SIGN UP PAGE</string>
+    <string name="signup_first_name">First Name</string>
+    <string name="signup_last_name">Last Name</string>
+    <string name="signup_email">Email</string>
+    <string name="signup_contact_Number">Contact Number</string>
+    <string name="signup_create_Password">Password</string>
 
 
     <!--    Manager Home screen-->
@@ -33,18 +39,41 @@
     <string name="add">Add</string>
     <string name="schedule_submit">Submit</string>
     <string-array name="shift_timings_array">
-        <item>7am-2pm</item>
-        <item>2pm-10pm</item>
-        <item>7am-11am</item>
-        <item>2pm-7pm</item>
+        <item> - </item>
+        <item>14:00 pm-22:00 pm</item>
+        <item>07:00 am-23:00 pm</item>
+        <item>14:00 pm-19:00 pm</item>
+        <item>07:00 am-14:00 pm</item>
+
     </string-array>
 
     <string-array name="employee_list_array">
-        <item>kashyap</item>
-        <item>Nirmohi</item>
-        <item>Rakhimol</item>
-        <item>Ajit</item>
+        <item>-</item>
+<!--        <item>Nirmohi</item>-->
+<!--        <item>Rakhimol</item>-->
+<!--        <item>Ajit</item>-->
     </string-array>
+
+    <!--   View Details screen-->
+    <string name="view_title">View Employee Details</string>
+    <string name="view_first_name">First Name</string>
+    <string name="view_last_name">Last Name</string>
+    <string name="view_email">Email</string>
+    <string name="view_contact_Number">Contact Number</string>
+    <string name="view_create_Password">Password</string>
+
+<!--    Employee Schedule Here-->
+    <string name="employee_weekly_schedule_title">Give Weekly Availability Here</string>
+    <string-array name="day_name">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
 
 
 </resources>
